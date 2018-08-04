@@ -235,11 +235,20 @@ public class RequestHandler implements Runnable {
 	private void handleHTTPSRequest(String urlString){
 
 		System.out.println("handleHTTPSRequest\n\n");
-		// Extract the URL and port of remote 
-		String url = urlString.substring(7);
-		String pieces[] = url.split(":");
-		url = pieces[0];
-		int port  = Integer.valueOf(pieces[1]);
+
+        URL aURL = null;
+        try {
+             aURL = new URL(urlString);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        // Extract the URL and port of remote 
+		//String url = urlString.substring(7);
+        //String url = urlString;
+		//String pieces[] = url.split(":");
+		//url = pieces[0];
+		//int port  = Integer.valueOf(pieces[1]);
+        int port = aURL.getPort();
 
 		try{
 			// Only first line of HTTPS request has been read at this point (CONNECT *)
@@ -249,12 +258,13 @@ public class RequestHandler implements Runnable {
 			for(int i=0;i<5 ;i++){
 				String tmp = proxyToClientBr.readLine();
 				str += tmp;
-				System.out.println(str);
+				//System.out.println(str);
 				str += "\r\n";
 				if(tmp.equals("")){
 					break;
 				}
 			}
+            System.out.println(str);
 			urlString = "CONNECT "+ urlString;
 
 
@@ -399,7 +409,7 @@ public class RequestHandler implements Runnable {
 				byte[] buffer = new byte[10350];
 				int read;
 				do {
-                    System.out.println("READ READ");
+                    System.out.println("READ: Read byte by byte from client and send directly to server");
 					read = proxyToClientIS.read(buffer);
                     //System.out.println("Client To Server RUN-inside while loop\n\n");
                     System.out.println("READ= "+ read);
@@ -413,7 +423,7 @@ public class RequestHandler implements Runnable {
                         //ToDo add endmessage
                         System.out.println();
                         Global.imageCounter++;
-                        System.out.println("Sending anohere one to server. imageName= "+ Integer.toString(Global.imageCounter));
+                        System.out.println("Sending anothere one to server. imageName= "+ Integer.toString(Global.imageCounter));
                         Encoder.byte2Image(httpsRequestByte, read+httpsUrl.getBytes().length+endMessageString.getBytes().length,Integer.toString(Global.imageCounter)+"-C");
 						//proxyToServerOS.write(buffer, 0, read);
 						//System.out.println("ClientToServer: "+ new String(buffer)+"\n\n\n");
@@ -430,7 +440,7 @@ public class RequestHandler implements Runnable {
 				System.out.println("Proxy to client HTTPS read timed out");
 				e.printStackTrace();
 			}
-		}
+			}
 	}
 
 
