@@ -19,7 +19,7 @@ public class Encoder {
     public static Map<Long,String> hashMapReverse = new HashMap<>(10000000);
 
     private static String codeBookPath = "./TOTALBITS.txt";
-    private static String uploadedImagesFromClient = "/home/prg/Desktop/Flickr_Client_v2.0/Image/clientImages/";
+    private static String uploadedImagesFromClient = "./Image/clientImages/";
 
 
 

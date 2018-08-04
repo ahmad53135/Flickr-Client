@@ -112,7 +112,7 @@ public class RequestHandler implements Runnable {
 	 * @param urlString URL ofthe file requested
 	 */
 	private void sendNonCachedToClient(String urlString){
-		System.out.println("sendNonCachedToClient\n\n");
+		System.out.println("sendNonCachedToClient-HTTP REQUESTS\n\n");
 
 		try{
 
@@ -155,7 +155,11 @@ public class RequestHandler implements Runnable {
 			else {
 
                 Global.imageCounter++;
+
+                urlString = urlString+endMessageString;
                 Encoder.byte2Image(urlString.getBytes(), urlString.getBytes().length,Integer.toString(Global.imageCounter)+"-C");
+
+
 
 				/*
 				// Create the URL
@@ -181,8 +185,11 @@ public class RequestHandler implements Runnable {
 				Client.runProxy(this.clientSocket);
 
 
+				//not sure, lets test it
+                proxyToClientBw.write(Client.clientBuffer);
 				//ToDo in running should be placed
 				proxyToClientBw.flush();
+
 
 
 

@@ -23,8 +23,8 @@ public class Client {
 
     public static int localport = 8415;
 
-    public static String downloadedImagesFromServer = "/home/prg/Desktop/Flickr_v2.0/Image/serverImages/";
-    public static String uploadedImagesFromClient = "/home/prg/Desktop/Flickr_v2.0/Image/clientImages/";
+    public static String downloadedImagesFromServer = "./Image/serverImages/";
+    public static String uploadedImagesFromClient = "./Image/clientImages/";
 
     public static byte[] clientBufferByte;
     public static String endMessageString = "\r\r\n\n";
@@ -115,7 +115,7 @@ public class Client {
 
                                     File file2 = null;
 
-                                    if (/*photo.getTitle().contains(Integer.toString(Global.imageCounter) + "-S") &&*/ serverResponse.contains(photo.getTitle()) == false) {
+                                    if (photo.getTitle().contains(Integer.toString(Global.imageCounter) + "-S") && serverResponse.contains(photo.getTitle()) == false) {
                                         photoArrayList.add(photo);
                                         file2 = new File(downloadedImagesFromServer + photo.getTitle() + "---.jpg");
                                         System.out.println("ImageAvailable=" + Long.toString(System.currentTimeMillis() - waitingTime[0]));
@@ -173,8 +173,8 @@ public class Client {
                                     int s=0;
                                     return;
 
-                                    /*streamToClient.write(clientBufferByte);
-                                    streamToClient.flush();*/
+                                    //streamToClient.write(clientBufferByte);
+                                    //streamToClient.flush();
 
 
                                     //Response = Response.substring(0, bytesToCut);
