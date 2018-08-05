@@ -82,11 +82,12 @@ public class RequestHandler implements Runnable {
 		// Remove everything past next space
 		urlString = urlString.substring(0, urlString.indexOf(' '));
 
+		//not good so commented
 		// Prepend http:// if necessary to create correct URL
-		if(!urlString.substring(0,4).equals("http")){
+		/*if(!urlString.substring(0,4).equals("http")){
 			String temp = "http://";
 			urlString = temp + urlString;
-		}
+		}*/
 
 
 
@@ -94,6 +95,8 @@ public class RequestHandler implements Runnable {
 		// Check request type
 		if(request.equals("CONNECT")){
 			System.out.println("HTTPS Request for : " + urlString + "\n");
+
+			urlString = "https://"+urlString;
 			handleHTTPSRequest(urlString);
 		} 
 

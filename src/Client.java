@@ -43,7 +43,7 @@ public class Client {
 
 
         try {
-            Encoder.load2List();//---------------------------------------------------
+            //Encoder.load2List();//---------------------------------------------------
 
         } catch (Exception e) {
             System.err.println(e);
