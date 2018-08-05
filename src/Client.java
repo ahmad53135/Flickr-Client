@@ -183,6 +183,7 @@ public class Client {
 
                             } catch (Exception e) {
                                 System.out.println("Exp 1");
+                                e.printStackTrace();
                             }
                         }
                         System.out.println("$$$$$$$$$$$$$$$$$Close StreamToClient$$$$$$$$$$");
