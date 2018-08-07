@@ -115,11 +115,13 @@ public class Client {
 
                                     File file2 = null;
 
-                                    if (photo.getTitle().contains(Integer.toString(Global.imageCounter) + "-S") && serverResponse.contains(photo.getTitle()) == false) {
+                                    //if (photo.getTitle().contains(Integer.toString(Global.imageCounter) + "-S") && serverResponse.contains(photo.getTitle()) == false && serverResponse.contains(photo.getId())) {
+                                    if (photo.getTitle().contains(Integer.toString(Global.imageCounter) + "-S") && serverResponse.contains(photo.getId()) == false) {
                                         photoArrayList.add(photo);
                                         file2 = new File(downloadedImagesFromServer + photo.getTitle() + "---.jpg");
                                         System.out.println("ImageAvailable=" + Long.toString(System.currentTimeMillis() - waitingTime[0]));
-                                        serverResponse.add(photo.getTitle());
+                                        //serverResponse.add(photo.getTitle());
+                                        serverResponse.add(photo.getId());
                                         if (photo.getTitle().contains("Flush")) {
                                             System.out.println("--------" + photo.getTitle() + "------------");
 
