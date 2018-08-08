@@ -160,9 +160,10 @@ public class Client {
                                         String tmp = new String(msg,StandardCharsets.ISO_8859_1);
                                         //Response = Response + tmp;
                                         Response = tmp;
+
                                     }
                                     //TimeUnit.SECONDS.sleep(10);
-
+                                    //System.out.println(Response);
 
 
                                     int newLinePos = Response.indexOf(endMessageString);

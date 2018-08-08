@@ -414,6 +414,7 @@ public class RequestHandler implements Runnable {
 				int read;
 				do {
                     System.out.println("READ: Read byte by byte from client and send directly to server");
+
 					read = proxyToClientIS.read(buffer);
                     //System.out.println("Client To Server RUN-inside while loop\n\n");
                     System.out.println("READ= "+ read);
@@ -438,11 +439,19 @@ public class RequestHandler implements Runnable {
 				} while (read >= 0);
 			}
 			catch (SocketTimeoutException ste) {
+                System.out.println("STE Exception");
+			    ste.printStackTrace();
 				// TODO: handle exception
 			}
 			catch (IOException e) {
 				System.out.println("Proxy to client HTTPS read timed out");
-				e.printStackTrace();
+                try {
+                    proxyToClientIS.close();
+                } catch (IOException e1) {
+                    System.out.println("Closing proxytoClientIS Exception");
+                    e1.printStackTrace();
+                }
+                e.printStackTrace();
 			}
 			}
 	}
